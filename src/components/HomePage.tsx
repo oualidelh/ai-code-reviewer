@@ -78,9 +78,9 @@ const HomePage = () => {
       if (err instanceof Error) {
         console.log("errmessage", err.message);
         setError(err.message);
-        toast.error(error);
+        toast(error);
       } else {
-        toast.error("unknow error happened");
+        toast("unknow error happened");
         setError("unknow error happened");
       }
     } finally {
