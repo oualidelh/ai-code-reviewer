@@ -5,14 +5,15 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function tryFixAndParse(raw: string): any | null {
+// Option 1: Generic function (most flexible)
+export function tryFixAndParse<T = unknown>(raw: string): T | null {
   try {
-    return JSON.parse(raw);
+    return JSON.parse(raw) as T;
   } catch {
     try {
       const fixed = raw
-        .replace(/[“”]/g, '"') // Curly quotes → straight quotes
-        .replace(/[‘’]/g, "'") // Curly apostrophes → straight
+        .replace(/[""]/g, '"') // Curly quotes → straight quotes
+        .replace(/['']/g, "'") // Curly apostrophes → straight
         .replace(/,\s*([}\]])/g, "$1") // Trailing commas → remove
         .replace(/\\n/g, "\n") // Escaped \n → real newline
         .replace(/\\"/g, '"') // Escaped quotes → real quotes
@@ -23,7 +24,7 @@ export function tryFixAndParse(raw: string): any | null {
         .replace(/^\s*```json\s*|\s*```$/g, "") // Strip ```json ... ``` blocks
         .trim();
 
-      return JSON.parse(fixed);
+      return JSON.parse(fixed) as T;
     } catch (innerErr) {
       console.error("Still can't parse AI output:", innerErr);
       return null;

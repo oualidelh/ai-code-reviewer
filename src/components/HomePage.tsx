@@ -4,7 +4,7 @@ import CodeEditor from "./CodeEditor";
 import NavBar from "./NavBar";
 import { prompt } from "@/lib/codePrompt";
 import ResultSection from "./ResultSection";
-import { tryFixAndParse } from "@/lib/utils";
+// import { tryFixAndParse } from "@/lib/utils";
 import CodeRevButton from "./CodeRevButton";
 import { toast } from "sonner";
 
@@ -67,13 +67,13 @@ const HomePage = () => {
 
       console.log("data", data);
       const aiMessage = data.data?.candidates?.[0]?.content?.parts?.[0].text;
-      // let parsedResult = null;
-      // parsedResult = JSON.parse(aiMessage);
-      // console.log("parsed result", parsedResult);
-      const parsed = tryFixAndParse(aiMessage);
-      console.log("parsed", parsed);
+      let parsedResult = null;
+      parsedResult = JSON.parse(aiMessage);
+      console.log("parsed result", parsedResult);
+      // const parsed = tryFixAndParse(aiMessage);
+      // console.log("parsed", parsed);
       console.log("parsedResult", data);
-      setCodeReview(parsed);
+      setCodeReview(parsedResult);
     } catch (err) {
       if (err instanceof Error) {
         console.log("errmessage", err.message);
