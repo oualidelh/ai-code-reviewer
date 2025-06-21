@@ -51,7 +51,7 @@ const HomePage = () => {
     setCodeReview(() => []);
     setError("");
     try {
-      const response = await fetch("http://localhost:3000/api/reviewCode", {
+      const response = await fetch("/api/reviewCode", {
         method: "post",
         headers: {
           "content-type": "application/json",
