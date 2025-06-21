@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Editor, type OnMount } from "@monaco-editor/react";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
-// import { useTheme } from "@/context/themeContext";
+import { useTheme } from "@/context/themeContext";
 
 type IStandaloneCodeEditor = Parameters<OnMount>[0];
 
@@ -14,7 +14,7 @@ interface codeEditorProps {
 
 const CodeEditor = ({ code, handleCodeChange, isLoading }: codeEditorProps) => {
   const [loadingDiv, setLoadingDiv] = useState<number>(1);
-  // const { theme } = useTheme();
+  const { theme } = useTheme();
   useEffect(() => {
     const codeEditorValue = () => {
       if (!code) {
@@ -57,37 +57,37 @@ const CodeEditor = ({ code, handleCodeChange, isLoading }: codeEditorProps) => {
   };
 
   const handleEditorWillMount = (monaco: typeof import("monaco-editor")) => {
-    // const isDark = theme === "dark";
+    const isDark = theme === "dark";
 
-    // if (isDark) {
-    monaco.editor.defineTheme("my-dark-theme", {
-      base: "vs-dark",
-      inherit: true,
-      rules: [
-        { token: "comment", foreground: "6A9955", fontStyle: "italic" },
-        { token: "keyword", foreground: "569CD6" },
-        { token: "string", foreground: "CE9178" },
-      ],
-      colors: {
-        "editor.background": "#060608",
-        "editor.foreground": "#d4d4d4",
-        "editorCursor.foreground": "#ffffff",
-      },
-    });
-    // } else {
-    monaco.editor.defineTheme("my-theme", {
-      base: "vs-dark",
-      inherit: true,
-      rules: [
-        { token: "comment", foreground: "008000", fontStyle: "italic" },
-        { token: "keyword", foreground: "c792ea" },
-        { token: "string", foreground: "ecc48d" },
-      ],
-      colors: {
-        "editor.background": "#393947",
-      },
-    });
-    // }
+    if (isDark) {
+      monaco.editor.defineTheme("my-dark-theme", {
+        base: "vs-dark",
+        inherit: true,
+        rules: [
+          { token: "comment", foreground: "6A9955", fontStyle: "italic" },
+          { token: "keyword", foreground: "569CD6" },
+          { token: "string", foreground: "CE9178" },
+        ],
+        colors: {
+          "editor.background": "#060608",
+          "editor.foreground": "#d4d4d4",
+          "editorCursor.foreground": "#ffffff",
+        },
+      });
+      // } else {
+      monaco.editor.defineTheme("my-theme", {
+        base: "vs-dark",
+        inherit: true,
+        rules: [
+          { token: "comment", foreground: "008000", fontStyle: "italic" },
+          { token: "keyword", foreground: "c792ea" },
+          { token: "string", foreground: "ecc48d" },
+        ],
+        colors: {
+          "editor.background": "#393947",
+        },
+      });
+    }
   };
   return (
     <div className="w-full h-full rounded-xl overflow-hidden shadow-md border border-muted/30 bg-editor-bg glass-card theme-transition">
@@ -123,8 +123,8 @@ const CodeEditor = ({ code, handleCodeChange, isLoading }: codeEditorProps) => {
         width="100%"
         defaultLanguage="javascript"
         defaultValue="// paste your code here "
-        theme="my-dark-theme"
-        // {theme === "dark" ? "my-dark-theme" : "my-theme"}
+        theme=// "my-dark-theme"
+        {theme === "dark" ? "my-dark-theme" : "my-theme"}
         options={{
           minimap: {
             enabled: false,
