@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function tryFixAndParse(raw: string) {
+export function tryFixAndParse(raw: string): any | null {
   try {
     return JSON.parse(raw);
   } catch {
