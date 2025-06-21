@@ -123,11 +123,12 @@ const CodeEditor = ({ code, handleCodeChange, isLoading }: codeEditorProps) => {
         width="100%"
         defaultLanguage="javascript"
         defaultValue="// paste your code here "
-        theme=// "my-dark-theme"
-        {theme === "dark" ? "my-dark-theme" : "my-theme"}
+        theme={ // "my-dark-theme"
+          theme === "dark" ? "my-dark-theme" : "my-theme"
+        }
         options={{
           minimap: {
-            enabled: false,
+            enabled: true,
           },
           fontSize: 16,
           cursorStyle: "line",
