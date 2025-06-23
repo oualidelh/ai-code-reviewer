@@ -94,7 +94,4 @@ This project is open-source and free to use. Feel free to fork or contribute!
 🙌 Author
 Oualid Elhouari
 Frontend Developer | AI Enthusiast | Open to Work
-LinkedIn
-GitHub
-
-
+LinkedIn : https://www.linkedin.com/in/elhouari-oualid/
