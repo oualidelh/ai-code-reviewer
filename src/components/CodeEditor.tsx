@@ -3,6 +3,8 @@ import { Editor, type OnMount } from "@monaco-editor/react";
 import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { useTheme } from "@/context/themeContext";
+import { options } from "@/lib/languageOptions";
+import LanguageSelect from "./LanguageSelect";
 
 type IStandaloneCodeEditor = Parameters<OnMount>[0];
 
@@ -14,7 +16,10 @@ interface codeEditorProps {
 
 const CodeEditor = ({ code, handleCodeChange, isLoading }: codeEditorProps) => {
   const [loadingDiv, setLoadingDiv] = useState<number>(1);
+  const [selectedOption, setSelectedOption] = useState(options[0].value);
+  console.log("selectedoption", selectedOption);
   const { theme } = useTheme();
+
   useEffect(() => {
     const codeEditorValue = () => {
       if (!code) {
@@ -109,10 +114,15 @@ const CodeEditor = ({ code, handleCodeChange, isLoading }: codeEditorProps) => {
             } w-3 h-3 rounded-full bg-green-500/80`}
           ></div>
         </div>
-        <div>main.js</div>
+        <div>
+          <LanguageSelect
+            setSelectedOption={setSelectedOption}
+            selectedOption={selectedOption}
+          />
+        </div>
         <Button
           variant={"outline"}
-          className="bg-transparent border border-gray-600 hover:bg-transparent"
+          className="bg-editor-headerItems border border-gray-600 hover:bg-editor-headerItems"
           onClick={copyText}
         >
           copy code
@@ -121,9 +131,10 @@ const CodeEditor = ({ code, handleCodeChange, isLoading }: codeEditorProps) => {
       <Editor
         height="90%"
         width="100%"
-        defaultLanguage="javascript"
+        language={selectedOption}
         defaultValue="// paste your code here "
-        theme={ // "my-dark-theme"
+        theme={
+          // "my-dark-theme"
           theme === "dark" ? "my-dark-theme" : "my-theme"
         }
         options={{

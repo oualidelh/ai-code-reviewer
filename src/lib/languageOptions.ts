@@ -1,4 +1,4 @@
-export const options = [
+export const options: selectOption[] = [
   { value: "javascript", label: "JavaScript" },
   { value: "python", label: "Python" },
   { value: "java", label: "Java" },

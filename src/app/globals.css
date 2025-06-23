@@ -38,6 +38,7 @@
     --editor-line: 240 14% 31%;
     --code-bg: 240 10% 13%;
     --code-foreground: 0 0% 88%;
+    --editor-header-items-bg: 240 11% 25%;
   }
 
   .dark {
