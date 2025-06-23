@@ -1,5 +1,7 @@
 export const options: selectOption[] = [
   { value: "javascript", label: "JavaScript" },
+  { value: "html", label: "HTML" },
+  { value: "css", label: "CSS" },
   { value: "python", label: "Python" },
   { value: "java", label: "Java" },
   { value: "csharp", label: "C#" },
