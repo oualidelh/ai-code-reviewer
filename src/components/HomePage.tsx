@@ -7,6 +7,7 @@ import ResultSection from "./ResultSection";
 // import { tryFixAndParse } from "@/lib/utils";
 import CodeRevButton from "./CodeRevButton";
 import { toast } from "sonner";
+import Footer from "./Footer";
 
 export type CodeReview = {
   bugs: string[];
@@ -116,6 +117,9 @@ const HomePage = () => {
         <div ref={resultSecRef} className="responsiveness h-auto">
           <ResultSection codeReview={codeReview} />
         </div>
+      </div>
+      <div className="w-full h-auto">
+        <Footer />
       </div>
     </div>
   );
