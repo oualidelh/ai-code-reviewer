@@ -62,6 +62,7 @@ module.exports = {
         editor: {
           bg: "hsl(var(--editor-bg))",
           line: "hsl(var(--editor-line))",
+          headerItems: "hsl(var(--editor-header-items-bg))",
         },
       },
       keyframes: {
