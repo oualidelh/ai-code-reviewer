@@ -15,12 +15,12 @@ interface resultSectionProps {
 }
 
 const ResultSection = ({ codeReview }: resultSectionProps) => {
-  const review = codeReview[0]; // We expect one object inside the array
+  const review = codeReview[0];
 
   if (!review) return null;
 
   return (
-    <div className="w-full h-auto mt-8 animate-fadeIn">
+    <div className="w-full h-auto animate-fadeIn">
       <h1 className="text-xl font-bold mb-4">Code Review Results</h1>
       <section className="w-full h-auto">
         <Tabs defaultValue="bugs" className="w-full">

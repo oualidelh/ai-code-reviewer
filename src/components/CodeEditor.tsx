@@ -5,6 +5,12 @@ import { Button } from "./ui/button";
 import { useTheme } from "@/context/themeContext";
 import { options } from "@/lib/languageOptions";
 import LanguageSelect from "./LanguageSelect";
+import { Copy } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type IStandaloneCodeEditor = Parameters<OnMount>[0];
 
@@ -33,7 +39,7 @@ const CodeEditor = ({ code, handleCodeChange, isLoading }: codeEditorProps) => {
     if (isLoading) {
       intervalId = setInterval(() => {
         setLoadingDiv((prev) => (prev === 3 ? 1 : prev + 1));
-      }, 1000);
+      }, 1200);
     }
 
     codeEditorValue();
@@ -120,13 +126,21 @@ const CodeEditor = ({ code, handleCodeChange, isLoading }: codeEditorProps) => {
             selectedOption={selectedOption}
           />
         </div>
-        <Button
-          variant={"outline"}
-          className="bg-editor-headerItems border border-gray-600 hover:bg-editor-headerItems"
-          onClick={copyText}
-        >
-          copy code
-        </Button>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant={"outline"}
+              className="bg-editor-headerItems w-auto px-1 border border-gray-600 hover:bg-editor-headerItems"
+              onClick={copyText}
+            >
+              <Copy />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent className="bg-editor-headerItems mb-1">
+            <p>Copy Code</p>
+          </TooltipContent>
+        </Tooltip>
       </div>
       <Editor
         height="90%"

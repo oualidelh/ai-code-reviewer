@@ -4,7 +4,6 @@ import CodeEditor from "./CodeEditor";
 import NavBar from "./NavBar";
 import { prompt } from "@/lib/codePrompt";
 import ResultSection from "./ResultSection";
-// import { tryFixAndParse } from "@/lib/utils";
 import CodeRevButton from "./CodeRevButton";
 import { toast } from "sonner";
 import Footer from "./Footer";
@@ -71,17 +70,21 @@ const HomePage = () => {
       let parsedResult = null;
       parsedResult = JSON.parse(aiMessage);
       console.log("parsed result", parsedResult);
-      // const parsed = tryFixAndParse(aiMessage);
-      // console.log("parsed", parsed);
       console.log("parsedResult", data);
       setCodeReview(parsedResult);
     } catch (err) {
       if (err instanceof Error) {
         console.log("errmessage", err.message);
         setError(err.message);
-        toast(error);
+        toast("Error!", {
+          description: `${error}`,
+          className: "text-green-500",
+        });
       } else {
-        toast("unknow error happened");
+        toast("Error!", {
+          description: "unknow error happened",
+          className: "text-green-500",
+        });
         setError("unknow error happened");
       }
     } finally {
@@ -113,8 +116,7 @@ const HomePage = () => {
             handleFetchReview={handleFetchReview}
           />
         </div>
-        {/* <div>{codeReview}</div> */}
-        <div ref={resultSecRef} className="responsiveness h-auto">
+        <div ref={resultSecRef} className="responsiveness h-auto  my-6">
           <ResultSection codeReview={codeReview} />
         </div>
       </div>
